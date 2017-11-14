@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <div *ngIf="!auth.token && !auth.currentUser;">
+                <!-- <form #cerebroForm="ngForm" (ngSubmit)="onSubmit()"> -->
+                <form [formGroup]="rForm" id="registerForm" class="col s12" (ngSubmit)="onSubmit()" novalidate>
+                  <div class="row">
+                    <h3>Register</h3>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'account'"></i>
+                      <input mz-input mz-validation id="username" name="username" formControlName="username"
+                        [(ngModel)]="registerModel.username" [errorMessageResource]="_errors.username"
+                        [label]="labels.username" type="text" required>
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'email'"></i>
+                      <input mz-input mz-validation id="email" name="email" formControlName="email"
+                        [(ngModel)]="registerModel.email" [errorMessageResource]="_errors.email"
+                        [label]="labels.email" type="email" required>
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'lock'"></i>
+                      <input mz-input mz-validation id="passwordItem" name="password" formControlName="password"
+                        [(ngModel)]="registerModel.password" [errorMessageResource]="_errors.password"
+                        [label]="labels.password" type="password" required>
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'tag-text-outline'"></i>
+                      <input mz-input mz-validation id="first_name" name="first_name" formControlName="first_name"
+                        [(ngModel)]="registerModel.first_name" [errorMessageResource]="_errors.first_name"
+                        [label]="labels.first_name" type="text">
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'tag-text-outline'"></i>
+                      <input mz-input mz-validation id="last_name" name="last_name" formControlName="last_name"
+                        [(ngModel)]="registerModel.last_name" [errorMessageResource]="_errors.last_name"
+                        [label]="labels.last_name" type="text">
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'account-card-details'"></i>
+                      <input mz-input mz-validation id="id_number" name="id_number" formControlName="id_number"
+                        [(ngModel)]="registerModel.id_number" [errorMessageResource]="_errors.id_number"
+                        [label]="labels.id_number" type="text">
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <mz-select-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'gender-male-female'"></i>
+                      <select mz-select mz-validation id="gender" name="gender" formControlName="gender"
+                        [(ngModel)]="registerModel.gender" [label]="labels.gender" [placeholder]="'Select a gender'">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </mz-select-container>
+                  </div>
+                  <div class="row">
+                    <mz-datepicker-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'calendar'"></i>
+                      <input mz-datepicker mz-validation id="birthdate" name="birthdate" formControlName="birthdate"
+                        [(ngModel)]="registerModel.birthdate" [label]="labels.birthdate"
+                        [options]="datepickerOptions" placeholder="Select your birth date" type="text">
+                    </mz-datepicker-container>
+                  </div>
+                  <div class="row">
+                    <mz-input-container class="col s12">
+                      <i mz-icon-mdi mz-input-prefix [icon]="'phone'"></i>
+                      <input mz-input mz-validation id="telephone" name="telephone" formControlName="telephone"
+                        [(ngModel)]="registerModel.telephone" [errorMessageResource]="_errors.telephone"
+                        [label]="labels.telephone" type="tel">
+                    </mz-input-container>
+                  </div>
+                  <div class="row">
+                    <div class="col s12">
+                      <div *ngIf="submitted" class="spinner right">
+                        <mz-spinner [color]="'blue'" [size]="'small'"></mz-spinner>
+                      </div>
+                      <button mz-button type="submit" class="waves-effect waves-light btn btn-small green right"
+                        [disabled]="!rForm.valid" *ngIf="!submitted">
+                        Send
+                        <i mz-icon-mdi class="icon-small" [icon]="'send'" [align]="'right'"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
