@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <form [formGroup]="mForm" id="addMusicForm" class="col s12" (ngSubmit)="onSubmit()" novalidate>
+                <div class="row">
+                  <h3>Add Music</h3>
+                </div>
+                <div class="row">
+                  <mz-input-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'format-title'"></i>
+                    <input mz-input mz-validation id="title" name="title" formControlName="title"
+                      [(ngModel)]="musicModel.title" [errorMessageResource]="_errors.title"
+                      [label]="labels.title" type="text" required>
+                  </mz-input-container>
+                </div>
+                <div class="row">
+                  <mz-input-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'account-box'"></i>
+                    <input mz-input mz-validation id="author" name="author" formControlName="author"
+                      [(ngModel)]="musicModel.author" [errorMessageResource]="_errors.author"
+                      [label]="labels.author" type="text" required>
+                  </mz-input-container>
+                </div>
+                <div class="row">
+                  <mz-select-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'music'"></i>
+                    <select mz-select mz-validation id="gender" name="gender" formControlName="gender"
+                      [(ngModel)]="musicModel.gender" [label]="labels.gender" [placeholder]="'Select a gender'">
+                      <option>Acoustic</option>
+                      <option>Classic</option>
+                      <option>Country</option>
+                      <option>Blues</option>
+                      <option>Funk</option>
+                      <option>Hip Hop</option>
+                      <option>House</option>
+                      <option>Jazz</option>
+                      <option>Other</option>
+                      <option>Pop</option>
+                      <option>Raggae</option>
+                      <option>Rhythm and Blues (R&B)</option>
+                      <option>Rock and Roll</option>
+                      <option>Techno</option>
+                    </select>
+                  </mz-select-container>
+                </div>
+                <div class="row">
+                  <mz-input-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'album'"></i>
+                    <input mz-input mz-validation id="album" name="album" formControlName="album"
+                      [(ngModel)]="musicModel.album" [errorMessageResource]="_errors.album"
+                      [label]="labels.album" type="text">
+                  </mz-input-container>
+                </div>
+                <div class="row">
+                  <mz-datepicker-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'calendar'"></i>
+                    <input mz-datepicker mz-validation id="release_date" name="release_date" formControlName="release_date"
+                      [(ngModel)]="musicModel.release_date"  [label]="labels.release_date"
+                      [options]="datepickerOptions" type="text">
+                  </mz-datepicker-container>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <div *ngIf="submitted" class="spinner right">
+                      <mz-spinner [color]="'blue'" [size]="'small'"></mz-spinner>
+                    </div>
+                    <button mz-button type="submit" class="waves-effect waves-light btn btn-small green right"
+                      [disabled]="!mForm.valid" *ngIf="!submitted">
+                      <i mz-icon-mdi [icon]="'content-save'" [align]="'left'"></i> Save
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
