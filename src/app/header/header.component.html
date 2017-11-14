@@ -22,6 +22,9 @@
               <a routerLink="/login" routerLinkActive="active">Login</a>
             </li>
             <li class="hide-on-med-and-down" [hidden]="!auth.currentUser || !auth.token">
+              <a routerLink="/add" routerLinkActive="active">Add</a>
+            </li>
+            <li class="hide-on-med-and-down" [hidden]="!auth.currentUser || !auth.token">
               <a (click)="auth.logout()" routerLinkActive="active">Logout</a>
             </li>
           </ul>
@@ -51,7 +54,8 @@
     <a routerLink="/" routerLinkActive="active" class="waves-effect">
       <i mz-icon-mdi [icon]="'home'" [align]="'left'"></i> Home
     </a>
-    <a routerLink="/" routerLinkActive="active" class="waves-effect">
+    <a routerLink="/add" routerLinkActive="active" class="waves-effect"
+      *ngIf="auth.currentUser && auth.token">
       <i mz-icon-mdi [icon]="'plus'" [align]="'left'"></i> Add Music
     </a>
   </mz-sidenav-link>
