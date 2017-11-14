@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <form [formGroup]="lForm" id="loginForm" class="col s12"
+                (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+                <div class="row">
+                  <h3>Login</h3>
+                </div>
+                <div class="row">
+                  <mz-input-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'account'"></i>
+                    <input mz-input mz-validation id="usernameItem" name="username"
+                      formControlName="username" [(ngModel)]="loginModel.username"
+                      [errorMessageResource]="_errors.username" [label]="labels.username"
+                      type="text" required>
+                  </mz-input-container>
+                </div>
+                <div class="row">
+                  <mz-input-container class="col s12">
+                    <i mz-icon-mdi mz-input-prefix [icon]="'lock'"></i>
+                    <input mz-input mz-validation id="passwordItem" name="password"
+                      formControlName="password" [(ngModel)]="loginModel.password"
+                      [errorMessageResource]="_errors.password" [label]="labels.password"
+                      type="password" required>
+                  </mz-input-container>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <div *ngIf="submitted" class="spinner right">
+                      <mz-spinner [color]="'blue'" [size]="'small'"></mz-spinner>
+                    </div>
+                    <button mz-button type="submit" class="waves-effect waves-light btn btn-small green right"
+                      [disabled]="!lForm.valid" *ngIf="!submitted">
+                      Send <i mz-icon-mdi class="icon-small" [icon]="'send'" [align]="'right'"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
