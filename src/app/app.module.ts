@@ -9,6 +9,7 @@ import { MaterializeModule } from 'ng2-materialize';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 import { NavbarService } from './_services/navbar.service';
+import { MusicService } from './_services/music.service';
 import { AuthenticationService } from './_services/authentication.service';
 import { AppRouteModule } from './app-route.routing';
 import { UsersModule } from './users/users.module';
@@ -37,6 +38,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   providers: [
     NavbarService,
+    MusicService,
     AuthenticationService
   ],
   bootstrap: [AppComponent]
