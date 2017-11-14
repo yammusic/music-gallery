@@ -1,0 +1,40 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="col s12">
+      <masonry [options]="masonryOptions" infiniteScroll
+        [infiniteScrollDistance]="0" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
+        <masonry-brick class="col s6 m4 l3"
+          *ngFor="let music of musicCollection |filter:nav.searchModel">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="/assets/img/music-cover.jpg">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4">
+                <i mz-icon-mdi [icon]="'dots-vertical'" [align]="'right'" class="waves-effect"></i>
+                {{music.title}}
+              </span>
+              <p>{{music.author}}</p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                <i mz-icon-mdi [icon]="'close'" [align]="'right'" class="material-icons"></i>
+                {{music.title}}
+              </span>
+              <div class="card-reveal-description">
+                <div [hidden]="!music.author"><strong>Author:</strong> {{music.author}}</div>
+                <div [hidden]="!music.album"><strong>Album:</strong> {{music.album}}</div>
+                <div [hidden]="!music.gender"><strong>Gender:</strong> {{music.gender}}</div>
+                <div [hidden]="!music.release_date">
+                  <strong>Release Date:</strong> {{music.release_date}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </masonry-brick>
+      </masonry>
+
+      <mz-spinner [hidden]="!loading" [color]="'blue'" [size]="'medium'"></mz-spinner>
+    </div>
+  </div>
+</section>
