@@ -1,0 +1,72 @@
+<div class="navbar-fixed">
+  <nav class="nav-border teal">
+    <div class="nav-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col s12 l3">
+            <a routerLink="/" routerLinkActive="active" class="brand-logo left">
+              <a mz-button [id]="'btn-sidenav'" [flat]="true" [float]="true" class="hide-on-large-only">
+                <i mz-icon-mdi [icon]="'menu'" [align]="'left'" style="line-height:inherit;"></i>
+              </a> Music Gallery
+            </a>
+          </div>
+
+          <ul class="right">
+            <li [hidden]="!nav.showSearchIcon"><a (click)="nav.toggleSearchNav()">
+              <i mz-icon-mdi [icon]="'magnify'"></i>
+            </a></li>
+            <li class="hide-on-med-and-down" [hidden]="auth.token && auth.currentUser">
+              <a routerLink="/register" routerLinkActive="active">Register</a>
+            </li>
+            <li class="hide-on-med-and-down" [hidden]="auth.token && auth.currentUser">
+              <a routerLink="/login" routerLinkActive="active">Login</a>
+            </li>
+            <li class="hide-on-med-and-down" [hidden]="!auth.currentUser || !auth.token">
+              <a (click)="auth.logout()" routerLinkActive="active">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav id="search-nav" class="nav-border teal" [hidden]="!nav.showSearchNav">
+    <div class="nav-wrapper">
+      <mz-input-container>
+        <i mz-icon-mdi mz-input-prefix [icon]="'magnify'" class="center-align"></i>
+        <input mz-input [(ngModel)]="nav.searchModel" [label]="'Search'" type="search" autofocus>
+        <i mz-icon-mdi [icon]="'close'" [align]="'right'" class="material-icons" (click)="nav.toggleSearchNav()"></i>
+      </mz-input-container>
+    </div>
+  </nav>
+</div>
+
+<mz-sidenav [id]="'mobile-menu'" [collapseButtonId]="'btn-sidenav'" [fixed]="true"
+  [closeOnClick]="true" [backgroundClass]="'grey lighten-4'" class="hide-on-large-only">
+  <mz-sidenav-header>
+    <div class="sidenav-title">Music Gallery</div>
+  </mz-sidenav-header>
+  <!-- <mz-sidenav-subheader>Link Subheader</mz-sidenav-subheader> -->
+  <mz-sidenav-link>
+    <a routerLink="/" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'home'" [align]="'left'"></i> Home
+    </a>
+    <a routerLink="/" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'plus'" [align]="'left'"></i> Add Music
+    </a>
+  </mz-sidenav-link>
+  <mz-sidenav-divider></mz-sidenav-divider>
+  <mz-sidenav-link [hidden]="auth.currentUser && auth.token">
+    <a routerLink="/register" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'account-plus'" [align]="'left'"></i> Register
+    </a>
+    <a routerLink="/login" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'login'" [align]="'left'"></i> Login
+    </a>
+  </mz-sidenav-link>
+  <mz-sidenav-link [hidden]="!auth.currentUser || !auth.token">
+    <a (click)="auth.logout()" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'logout'" [align]="'left'"></i> Logout
+    </a>
+  </mz-sidenav-link>
+</mz-sidenav>
