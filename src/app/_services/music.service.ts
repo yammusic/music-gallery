@@ -14,7 +14,7 @@ export class MusicService {
     private http: Http
   ) {
     this.limitCollection = 10;
-    this.baseApi = `http://localhost/music-gallery-api/wp-json/music-gallery/api`;
+    this.baseApi = `http://musicgalleryapi.apps-1and1.com/wp-json/music-gallery/api`;
   }
 
   public getItems(option: {page?: number, limit?: number} = {}) {

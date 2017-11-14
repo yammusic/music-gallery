@@ -16,7 +16,7 @@ export class AuthenticationService {
     private http: Http,
     private toast: MzToastService
   ) {
-    this.baseApi = `http://localhost/music-gallery-api/wp-json/music-gallery/api`;
+    this.baseApi = `http://musicgalleryapi.apps-1and1.com/wp-json/music-gallery/api`;
 
     // set token if saved in local storage
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
