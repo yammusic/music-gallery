@@ -63,4 +63,12 @@ export class AuthenticationService {
 
     this.toast.show(`You have finished session`, 4000);
   }
+
+  public getAuthorizationHeader() {
+    // if (!this.currentUser || !this.currentUser.token || !this.token) {return false;}
+    const headers = new Headers();
+    // headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', `Bearer ${this.token}`);
+    return headers;
+  }
 }
