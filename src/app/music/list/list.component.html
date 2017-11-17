@@ -3,7 +3,7 @@
     <div class="col s12">
       <masonry [options]="masonryOptions" infiniteScroll
         [infiniteScrollDistance]="0" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
-        <masonry-brick class="col s6 m4 l3"
+        <masonry-brick class="col s6 m4 l3" style="position: relative;"
           *ngFor="let music of musicCollection |filter:nav.searchModel">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
@@ -25,8 +25,18 @@
                 <div [hidden]="!music.author"><strong>Author:</strong> {{music.author}}</div>
                 <div [hidden]="!music.album"><strong>Album:</strong> {{music.album}}</div>
                 <div [hidden]="!music.gender"><strong>Gender:</strong> {{music.gender}}</div>
-                <div [hidden]="!music.release_date">
+                <div [hidden]="!music.release_date || music.release_date === '0000-00-00'">
                   <strong>Release Date:</strong> {{music.release_date}}
+                </div>
+
+                <div class="actions right-align">
+                    <a [routerLink]="['/edit', music.id]" class="btn-floating btn-small waves-effect waves-light orange">
+                      <i mz-icon-mdi [icon]="'pencil'" [size]="'18px'"></i>
+                    </a>
+                    <a class="btn-floating btn-small waves-effect waves-light red"
+                      (click)="onModalDelete(modalDeleteMusic, music)">
+                      <i mz-icon-mdi [icon]="'delete'" [size]="'18px'"></i>
+                    </a>
                 </div>
               </div>
             </div>
@@ -38,3 +48,13 @@
     </div>
   </div>
 </section>
+
+<mz-modal #modalDeleteMusic [fixedFooter]="false" [bottomSheet]="false" [options]="modalOptions">
+  <mz-modal-header>{{modal.title}}</mz-modal-header>
+  <mz-modal-content>{{modal.content}}</mz-modal-content>
+  <mz-modal-footer>
+    <button mz-button [disabled]="submitted" [flat]="true" mz-modal-close>Cancel</button>
+    <button mz-button [disabled]="submitted" [flat]="true" (click)="onDelete()">Agree</button>
+    <!-- <mz-spinner class="spinner" [hidden]="!submitted" [color]="'blue'" [size]="'medium'"></mz-spinner> -->
+  </mz-modal-footer>
+</mz-modal>
