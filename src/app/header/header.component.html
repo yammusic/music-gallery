@@ -25,6 +25,9 @@
               <a routerLink="/add" routerLinkActive="active">Add</a>
             </li>
             <li class="hide-on-med-and-down" [hidden]="!auth.currentUser || !auth.token">
+              <a routerLink="/profile" routerLinkActive="active">Profile</a>
+            </li>
+            <li class="hide-on-med-and-down" [hidden]="!auth.currentUser || !auth.token">
               <a (click)="auth.logout()" routerLinkActive="active">Logout</a>
             </li>
           </ul>
@@ -69,6 +72,9 @@
     </a>
   </mz-sidenav-link>
   <mz-sidenav-link [hidden]="!auth.currentUser || !auth.token">
+    <a routerLink="/profile" routerLinkActive="active" class="waves-effect">
+      <i mz-icon-mdi [icon]="'account-card-details'" [align]="'left'"></i> Profile
+    </a>
     <a (click)="auth.logout()" routerLinkActive="active" class="waves-effect">
       <i mz-icon-mdi [icon]="'logout'" [align]="'left'"></i> Logout
     </a>
