@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
+
+import { environment } from './../../environments/environment.prod';
 
 import { MzToastService } from 'ng2-materialize';
 
@@ -14,9 +17,14 @@ export class AuthenticationService {
 
   constructor(
     private http: Http,
-    private toast: MzToastService
+    private toast: MzToastService,
+    private router: Router
   ) {
-    this.baseApi = `http://musicgalleryapi.apps-1and1.com/wp-json/music-gallery/api`;
+    if (!environment.production) {
+      this.baseApi = `http://localhost/music-gallery-api/wp-json/music-gallery/api`;
+    } else {
+      this.baseApi = `http://musicgalleryapi.apps-1and1.com/wp-json/music-gallery/api`;
+    }
 
     // set token if saved in local storage
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -56,12 +64,31 @@ export class AuthenticationService {
     ).map((response: Response) => response);
   }
 
+  public getCurrentUserData() {
+    const headers = this.getAuthorizationHeader();
+    const email = encodeURIComponent(this.currentUser.email);
+    return this.http.get(
+      `${this.baseApi}/auth/user?email=${email}`,
+      {headers: headers}
+    ).map((response: Response) => response.json());
+  }
+
+  public editUser(model: {}) {
+    const headers = this.getAuthorizationHeader();
+    return this.http.put(
+      `${this.baseApi}/auth/edit`,
+      { user: model },
+      {headers: headers}
+    ).map((response: Response) => response);
+  }
+
   public logout(): void {
     this.token = null;
     this.currentUser = false;
     localStorage.removeItem('currentUser');
 
     this.toast.show(`You have finished session`, 4000);
+    this.router.navigate(['/']);
   }
 
   public getAuthorizationHeader() {
