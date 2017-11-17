@@ -13,6 +13,7 @@ import { MusicRouteModule } from './music-route.routing';
 import { HeaderComponent } from '../header/header.component';
 import { AddMusicComponent } from './add/add.component';
 import { ListMusicComponent } from './list/list.component';
+import { EditMusicComponent } from './edit/edit.component';
 
 @NgModule({
   imports: [
@@ -27,11 +28,13 @@ import { ListMusicComponent } from './list/list.component';
   ],
   declarations: [
     AddMusicComponent,
-    ListMusicComponent
+    ListMusicComponent,
+    EditMusicComponent
   ],
   exports: [
     AddMusicComponent,
-    ListMusicComponent
+    ListMusicComponent,
+    EditMusicComponent
   ],
   providers: [
     AuthenticationService,
