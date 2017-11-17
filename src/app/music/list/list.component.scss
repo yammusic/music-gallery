@@ -1,4 +1,27 @@
 .card-reveal-description {
   margin-top: 40px;
   font-size: 14px;
+
+  .actions {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+
+    .btn-floating.btn-small {
+      width: 32px;
+      height: 32px;
+    }
+
+    .btn-floating {
+      i {
+        line-height: 32px;
+      }
+    }
+  }
+
+}
+
+.spinner {
+  margin-top: -90px;
 }
