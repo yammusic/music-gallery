@@ -1,0 +1,22 @@
+.card {
+  padding: 15px;
+
+  .card-image {
+    padding: 15px;
+    max-width: 270px;
+  }
+
+  .card-image-on-small {
+    img {
+      width: 100%;
+    }
+  }
+
+  .divider {
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+
+  .mb0 { margin-bottom: 0; }
+  .mb5 { margin-bottom: 5px; }
+}

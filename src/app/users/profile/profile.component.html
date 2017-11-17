@@ -1,0 +1,53 @@
+<section class="container">
+  <div class="row">
+    <div class="col s12">
+      <div class="card horizontal" *ngIf="!loading">
+        <div class="card-image hide-on-small-only">
+          <img *ngIf="userModel.gender !== 'female'" src="/assets/img/user-profile-male.png">
+          <img *ngIf="userModel.gender === 'female'" src="/assets/img/user-profile-female.png">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <div class="row mb5">
+              <div class="col s12 hide-on-med-and-up card-image-on-small">
+                <img *ngIf="userModel.gender !== 'female'" src="/assets/img/user-profile-male.png">
+                <img *ngIf="userModel.gender === 'female'" src="/assets/img/user-profile-female.png">
+              </div>
+              <h2 class="mb0 center-align">{{userModel.username}}</h2>
+              <div class="col s12 center-align">{{userModel.first_name}} {{userModel.last_name}}</div>
+            </div>
+            <div class="divider"></div>
+            <div class="row mb5" *ngIf="userModel.email">
+              <div class="col s3"><strong>Email</strong></div>
+              <div class="col s9 grey-text text-darken-2">{{userModel.email}}</div>
+            </div>
+            <div class="row mb5" *ngIf="userModel.gender">
+              <div class="col s3"><strong>Gender</strong></div>
+              <div class="col s9 grey-text text-darken-2">{{userModel.gender}}</div>
+            </div>
+            <div class="row mb5" *ngIf="userModel.birthdate && userModel.birthdate !== '0000-00-00'">
+              <div class="col s3"><strong>Birth Date</strong></div>
+              <div class="col s9 grey-text text-darken-2">{{userModel.birthdate}}</div>
+            </div>
+            <div class="row mb5" *ngIf="userModel.id_number">
+              <div class="col s3"><strong>ID Number</strong></div>
+              <div class="col s9 grey-text text-darken-2">{{userModel.id_number}}</div>
+            </div>
+            <div class="row mb5" *ngIf="userModel.telephone">
+              <div class="col s3"><strong>Telephone</strong></div>
+              <div class="col s9 grey-text text-darken-2">{{userModel.telephone}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fixed-action-btn" *ngIf="!loading">
+        <a routerLink="/profile/edit" class="btn-floating btn-large red" title="Edit User">
+          <i mz-icon-mdi [icon]="'pencil'"></i>
+        </a>
+      </div>
+
+      <mz-spinner [hidden]="!loading" [color]="'blue'" [size]="'medium'"></mz-spinner>
+    </div>
+  </div>
+</section>
