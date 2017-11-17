@@ -110,8 +110,8 @@ export class AddMusicComponent implements OnInit, OnDestroy {
     console.log(this.musicModel);
     this.music.add(this.musicModel).subscribe(
       res => {
-        this.submitted = false;
-        this.toast.show(res.text(), 3000, '', () => {
+        this.toast.show(res.text(), 2500, '', () => {
+          this.submitted = false;
           this.router.navigate(['/']);
         })
       },
